@@ -7,7 +7,7 @@ var Engine = (function(global) {
         lastTime;
 
     canvas.width = 909;
-    canvas.height = 606;
+    canvas.height = 645;
     doc.body.appendChild(canvas);
 
     function main() {
@@ -36,7 +36,9 @@ var Engine = (function(global) {
         allEnemies.forEach(function(enemy) {
             enemy.update(dt);
         });
+        
         player.update();
+        gem.update();
     }
 
     function render() {
@@ -58,6 +60,9 @@ var Engine = (function(global) {
             }
         }
 
+        ctx.drawImage(Resources.get('images/background.png'), 0, 590);
+        ctx.drawImage(Resources.get('images/background.png'), 0, 0);
+
         renderEntities();
     }
 
@@ -66,7 +71,12 @@ var Engine = (function(global) {
             enemy.render();
         });
 
+        
         player.render();
+        gem.render();
+        gameLife.render();
+        gameScore.render();
+
     }
 
     function reset() {
@@ -78,11 +88,19 @@ var Engine = (function(global) {
         'images/water-block.png',
         'images/grass-block.png',
         'images/enemy-bug.png',
+        'images/Gem_Blue.png',
+        'images/Gem_Green.png',
+        'images/Gem_Orange.png',
+        'images/Heart_s.png',
         'images/char-boy.png',
         'images/char-cat-girl.png',
         'images/char-horn-girl.png',
         'images/char-pink-girl.png',
-        'images/char-princess-girl.png'
+        'images/char-princess-girl.png',
+        'images/background.png',
+        'images/Star_s.png',
+        'images/Gem_Orange_s.png',
+        'images/gameover.png'
     ]);
     Resources.onReady(init);
     global.ctx = ctx;
